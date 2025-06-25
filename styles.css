@@ -1,0 +1,117 @@
+/* Reset and base styles - UNCHANGED */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Background styling - UNCHANGED */
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('background.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+/* Fog overlay - MODIFIED to be transparent */
+.fog-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background-image: url('fog.gif');
+    background-size: 100% 100%;
+    background-repeat: repeat-x;
+    z-index: 2;
+    opacity: 0.5; /* Reduced opacity */
+    mix-blend-mode: lighten; /* Changed blend mode */
+    pointer-events: none;
+}
+
+/* ALL YOUR EXISTING FIREWORK STYLES - COMPLETELY UNCHANGED */
+.firework {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    outline: none;
+    border: none;
+    mask-image: radial-gradient(
+        circle at center,
+        white 0%,
+        white 80%,
+        transparent 100%
+    );
+    -webkit-mask-image: radial-gradient(
+        circle at center,
+        white 0%,
+        white 80%,
+        transparent 100%
+    );
+    animation: 
+        float 8s ease-in-out infinite,
+        pulse 3s ease-in-out infinite;
+    z-index: 3;
+}
+
+.firework1 {
+    top: 20%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+}
+
+.firework2 {
+    top: 20%;
+    left: 39%;
+    transform: translate(-50%, -50%);
+    animation-delay: 0.5s;
+}
+
+.firework3 {
+    top: 20%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    animation-delay: 1s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+    25% { transform: translate(-45%, -55%) rotate(2deg); }
+    50% { transform: translate(-55%, -45%) rotate(-2deg); }
+    75% { transform: translate(-45%, -45%) rotate(1deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.9; transform: scale(0.95) translate(-50%, -50%); }
+    50% { opacity: 1; transform: scale(1.05) translate(-50%, -50%); }
+}
+
+.firework::after {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    top: -25%;
+    left: -25%;
+    background: radial-gradient(
+        circle at center,
+        rgba(255,255,255,0.3) 0%,
+        transparent 70%
+    );
+    border-radius: 50%;
+    z-index: -1;
+}
