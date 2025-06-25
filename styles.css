@@ -1,4 +1,4 @@
-/* Reset and base styles - UNCHANGED */
+/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +11,7 @@ html, body {
     overflow: hidden;
 }
 
-/* Background styling - UNCHANGED */
+/* Background styling */
 .background {
     position: absolute;
     top: 0;
@@ -25,7 +25,7 @@ html, body {
     z-index: 1;
 }
 
-/* Fog overlay - MODIFIED to be transparent */
+/* Fog overlay */
 .fog-overlay {
     position: absolute;
     top: 0;
@@ -36,12 +36,60 @@ html, body {
     background-size: 100% 100%;
     background-repeat: repeat-x;
     z-index: 2;
-    opacity: 0.5; /* Reduced opacity */
-    mix-blend-mode: lighten; /* Changed blend mode */
+    opacity: 0.5;
+    mix-blend-mode: lighten;
     pointer-events: none;
 }
 
-/* ALL YOUR EXISTING FIREWORK STYLES - COMPLETELY UNCHANGED */
+/* Floating image */
+.floating-image {
+    position: absolute;
+    width: 600px;
+    height: auto;
+    z-index: 3;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+/* Boat image */
+.boat {
+    position: absolute;
+    width: 250px;
+    height: auto;
+    z-index: 2;
+    bottom: -1%;
+    left: 9%;
+    pointer-events: none;
+    animation: boat-float 6s ease-in-out infinite;
+}
+
+/* Dancing animation */
+.dancing-animation {
+    position: absolute;
+    width: 250px;
+    height: auto;
+    z-index: 2;
+    bottom: 9%;
+    left: 9%;
+    pointer-events: none;
+}
+
+/* American Flag - Completely opaque */
+.american-flag {
+    position: absolute;
+    width: 200px;
+    height: auto;
+    z-index: 3;
+    top: 10%;
+    right: 10%;
+    pointer-events: none;
+    animation: flag-wave 5s ease-in-out infinite;
+}
+
+/* Fireworks */
 .firework {
     position: absolute;
     width: 600px;
@@ -88,6 +136,7 @@ html, body {
     animation-delay: 1s;
 }
 
+/* Animations */
 @keyframes float {
     0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
     25% { transform: translate(-45%, -55%) rotate(2deg); }
@@ -100,6 +149,17 @@ html, body {
     50% { opacity: 1; transform: scale(1.05) translate(-50%, -50%); }
 }
 
+@keyframes boat-float {
+    0%, 100% { transform: translateY(0) rotate(1deg); }
+    50% { transform: translateY(-10px) rotate(-1deg); }
+}
+
+@keyframes flag-wave {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+}
+
+/* Glow effect */
 .firework::after {
     content: '';
     position: absolute;
